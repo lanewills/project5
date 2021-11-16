@@ -1,4 +1,4 @@
-package covidproject;
+package prj5;
 import list.ListInterface;
 /**
  * A class that implements the ADT list by using a chain of linked nodes that
