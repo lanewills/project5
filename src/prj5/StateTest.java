@@ -10,11 +10,31 @@ import student.TestCase;
  */
 public class StateTest extends TestCase {
     
+    private State state1;
+    private DoublyLinkedList<Race> raceList;
+    
     /**
      * Sets up all test cases.
      */
     public void setUp()
     {
-        
+        raceList = new DoublyLinkedList<Race>();
+        state1 = new State("VA", raceList);
+    }
+    
+    /**
+     * tests the getName method.
+     */
+    public void testGetName()
+    {
+        assertEquals(state1.getName(), "VA");
+    }
+    
+    /**
+     * tests the getRace method.
+     */
+    public void testGetRaceData()
+    {
+        assertEquals(state1.getRaceData(), raceList);
     }
 }
