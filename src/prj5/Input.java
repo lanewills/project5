@@ -17,7 +17,7 @@ public class Input {
      */
     public static void main(String[]args) throws FileNotFoundException{
         if (args.length == 1){
-            new DataReader(args[0]);
+            new CovidFileReader(args[0]);
         }
 
         else{
