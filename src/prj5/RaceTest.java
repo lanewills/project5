@@ -72,8 +72,8 @@ public class RaceTest extends TestCase {
      */
     public void testCompareAlpha()
     {
-        assertEquals(race1.compareAlpha(race1, race2), -1);
-        assertEquals(race1.compareAlpha(race2, race1), 1);
+        assertEquals(Race.compareAlpha(race1, race2), -1);
+        assertEquals(Race.compareAlpha(race2, race1), 1);
     }
     
     /**
@@ -81,7 +81,7 @@ public class RaceTest extends TestCase {
      */
     public void testCompareCFR()
     {
-        assertEquals(race1.compareCFR(race1, race2), -1);
-        assertEquals(race1.compareCFR(race2, race1), 1);
+        assertEquals(Race.compareCFR(race1, race2), -1);
+        assertEquals(Race.compareCFR(race2, race1), 1);
     }
 }
