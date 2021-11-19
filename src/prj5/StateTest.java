@@ -9,4 +9,12 @@ import student.TestCase;
  *
  */
 public class StateTest extends TestCase {
+    
+    /**
+     * Sets up all test cases.
+     */
+    public void setUp()
+    {
+        
+    }
 }
