@@ -21,7 +21,7 @@ public class CovidWindow {
     private Button representNC;
     private Button representTN;
     private Button representVA;
-    private tate[] state;
+    private State[] state;
     private TextShape title;
     private Shape whiteBar;
     private Shape asianBar;
@@ -75,5 +75,305 @@ public class CovidWindow {
         sortByAlpha.onClick(this, "clickedAlpha");
         sortByCFR.onClick(this, "clickedCFR");
         this.state = state;
+    }
+
+    /**
+     * This method displays the information for DC when it is clicked
+     * @param button The button to click
+     */
+    public void clickedDC(Button button) {
+        window.removeAllShapes();
+        title = new TextShape(5, 0, "DC Case Fatality Ratios by Race");
+        int x = (window.getGraphPanelWidth() / 2) - (title.getWidth()
+                / 2);
+        int y = (window.getGraphPanelHeight() / 2) - 125;
+        title.moveTo(x, y);
+        Object[] Race = state[0].getRaceData().toArray();
+        dataExtractor(Race);
+        graph(Race);
+    }
+
+    /**
+     * This method displays the information for GA when it is clicked
+     * @param button The button to click
+     */
+    public void clickedGA(Button button) {
+        window.removeAllShapes();
+        title = new TextShape(5, 0, "GA Case Fatality Ratios by Race");
+        int x = (window.getGraphPanelWidth() / 2) - (title.getWidth()
+                / 2);
+        int y = (window.getGraphPanelHeight() / 2) - 125;
+        title.moveTo(x, y);
+        Object[] Race = state[1].getRaceData().toArray();
+        dataExtractor(Race);
+        graph(Race);
+    }
+
+    /**
+     * This method displays the information for MD when it is clicked
+     * @param button The button to click
+     */
+    public void clickedMD(Button button) {
+        window.removeAllShapes();
+        title = new TextShape(5, 0, "DC Case Fatality Ratios by Race");
+        int x = (window.getGraphPanelWidth() / 2) - (title.getWidth()
+                / 2);
+        int y = (window.getGraphPanelHeight() / 2) - 125;
+        title.moveTo(x, y);
+        Object[] Race = state[2].getRaceData().toArray();
+        dataExtractor(Race);
+        graph(Race);
+    }
+
+    /**
+     * This method displays the information for NC when it is clicked
+     * @param button The button to click
+     */
+    public void clickedNC(Button button) {
+        window.removeAllShapes();
+        title = new TextShape(5, 0, "NC Case Fatality Ratios by Race");
+        int x = (window.getGraphPanelWidth() / 2) - (title.getWidth()
+                / 2);
+        int y = (window.getGraphPanelHeight() / 2) - 125;
+        title.moveTo(x, y);
+        Object[] Race = state[3].getRaceData().toArray();
+        dataExtractor(Race);
+        graph(Race);
+    }
+
+    /**
+     * This method displays the information for DC when it is clicked
+     * @param button The button to click
+     */
+    public void clickedTN(Button button) {
+        window.removeAllShapes();
+        title = new TextShape(5, 0, "TN Case Fatality Ratios by Race");
+        int x = (window.getGraphPanelWidth() / 2) - (title.getWidth()
+                / 2);
+        int y = (window.getGraphPanelHeight() / 2) - 125;
+        title.moveTo(x, y);
+        Object[] Race = state[4].getRaceData().toArray();
+        dataExtractor(Race);
+        graph(Race);
+    }
+
+    /**
+     * This method displays the information for VA when it is clicked
+     * @param button The button to click
+     */
+    public void clickedVA(Button button) {
+        window.removeAllShapes();
+        title = new TextShape(5, 0, "VA Case Fatality Ratios by Race");
+        int x = (window.getGraphPanelWidth() / 2) - (title.getWidth()
+                / 2);
+        int y = (window.getGraphPanelHeight() / 2) - 125;
+        title.moveTo(x, y);
+        Object[] Race = state[5].getRaceData().toArray();
+        dataExtractor(Race);
+        graph(Race);
+    }
+
+    /**
+     * Helper method that extracts values from the state array
+     * @param race state array used
+     */
+    private void extractData(Object[] race) {
+        for (int i = 0; i < race.length; i++) {
+            Race group = (Race) race[i];
+            String name = group.getRace();
+
+            switch (name) {
+                case "asian":
+                    Race asian = group;
+                    asianCFRPercent = asian.getCFR();
+                    asianCFR = (int) Math.round(asian.getCFR() * 10);
+                    break;
+                case "white":
+                    Race white = group;
+                    whiteCFRPercent = white.getCFR();
+                    whiteCFR = (int) Math.round(white.getCFR() * 10);
+                    break;
+                case "black":
+                    Race black = group;
+                    blackCFRPercent = black.getCFR();
+                    blackCFR = (int) Math.round(black.getCFR() * 10);
+                    break;
+                case "latinx":
+                    Race latinx = group;
+                    latinxCFRPercent = latinx.getCFR();
+                    latinxCFR = (int) Math.round(latinx.getCFR() * 10);
+                    break;
+                default:
+                    Race other = group;
+                    otherCFRPercent = other.getCFR();
+                    otherCFR = (int) Math.round(other.getCFR() * 10);
+                    break;
+            }
+        }
+    }
+    /**
+     * Graphs the different groups to the window
+     */
+    private void graph(Object[] groups)
+    {
+        window.removeAllShapes();
+        int yVal = (window.getGraphPanelHeight() * 3 / 4);
+        for (int i = 0; i < groups.length; i++)
+        {
+            Race group = (Race) groups[i];
+            String name = group.getRace();
+            int xVal = XSTARTING + XGAP * i;
+            TextShape text = new TextShape(xVal, yVal + 13, name);
+            window.addShape(text);
+            switch(name){
+                case "asian":
+                    if(asianCFRPercent == -1)
+                    {
+                        TextShape na = new TextShape(xVal, yVal - 10, "NA");
+                        window.addShape(na);
+                    }
+                    else
+                    {
+                        asianBar = new Shape(xVal + 10, yVal - asianCFR, BAR_WIDTH, asianCFR, Color.GREEN);
+                        window.addShape(asianBar);
+                        TextShape percent = new TextShape(xVal, yVal + 43, asianCFRPercent + "%");
+                        window.addShape(percent);
+                    }
+                    break;
+                case "white":
+                    if(whiteCFRPercent == -1)
+                    {
+                        TextShape na = new TextShape(xVal , yVal - 10, "NA");
+                        window.addShape(na);
+                    }
+                    else
+                    {
+                        whiteBar = new Shape(xVal + 10, yVal - whiteCFR, BAR_WIDTH, whiteCFR, Color.RED);
+                        window.addShape(whiteBar);
+                        TextShape percent = new TextShape(xVal, yVal + 43, whiteCFRPercent + "%");
+                        window.addShape(percent);
+                    }
+                    break;
+                case "black":
+                    if(blackCFRPercent == -1)
+                    {
+                        TextShape na = new TextShape(xVal, yVal - 10, "NA");
+                        window.addShape(na);
+                    }
+                    else
+                    {
+                        blackBar = new Shape(xVal + 10, yVal - blackCFR, BAR_WIDTH, blackCFR, Color.BLUE);
+                        window.addShape(blackBar);
+                        TextShape percent = new TextShape(xVal, yVal + 43, blackCFRPercent + "%");
+                        window.addShape(percent);
+                    }
+                    break;
+                case "latinx":
+                    if(latinxCFRPercent == -1)
+                    {
+                        TextShape na = new TextShape(xVal, yVal - 10, "NA");
+                        window.addShape(na);
+                    }
+                    else
+                    {
+                        latinxBar = new Shape(xVal + 10, yVal - latinxCFR, BAR_WIDTH, latinxCFR, Color.GRAY);
+                        window.addShape(latinxBar);
+                        TextShape percent = new TextShape(xVal, yVal + 43, latinxCFRPercent + "%");
+                        window.addShape(percent);
+                    }
+                    break;
+                default:
+                    if(otherCFRPercent == -1)
+                    {
+                        TextShape na = new TextShape(xVal, yVal - 10, "NA");
+                        window.addShape(na);
+                    }
+                    else
+                    {
+                        otherBar = new Shape(xVal + 10, yVal - otherCFR, BAR_WIDTH, otherCFR, Color.ORANGE);
+                        window.addShape(otherBar);
+                        TextShape percent = new TextShape(xVal, yVal + 43, otherCFRPercent + "%");
+                        window.addShape(percent);
+                    }
+                    break;
+            }
+            window.addShape(title);
+        }
+    }
+
+    /**
+     * This method represents when the Sort by Alpha button is clicked
+     * @param button that represents what is getting clicked
+     */
+    public void clickedAlpha(Button button) {
+        if (title == null) {
+            return;
+        }
+        String name = title.getText().substring(0, 2);
+        switch(name){
+            case "DC":
+                state[0].getRaceData().insertionSortAlpha();
+                graph(state[0].getRaceData().toArray());
+                break;
+            case "GA":
+                state[1].getRaceData().insertionSortAlpha();
+                graph(state[1].getRaceData().toArray());
+                break;
+            case "MD":
+                state[2].getRaceData().insertionSortAlpha();
+                graph(state[2].getRaceData().toArray());
+                break;
+            case "NC":
+                state[3].getRaceData().insertionSortAlpha();
+                graph(state[3].getRaceData().toArray());
+                break;
+            case "TN":
+                state[4].getRaceData().insertionSortAlpha();
+                graph(state[4].getRaceData().toArray());
+                break;
+            default:
+                state[5].getRaceData().insertionSortAlpha();
+                graph(state[5].getRaceData().toArray());
+                break;
+        }
+        window.addShape(title);
+    }
+
+    /**
+     * This method represents when the Sort by CFR button is clicked
+     * @param button that is being clicked on
+     */
+    public void clickedCFR(Button button) {
+        if (title == null) {
+            return;
+        }
+        String name = title.getText().substring(0, 2);
+        switch(name) {
+            case "DC":
+                state[0].getRaceData().insertionSortCFR();
+                graph(state[0].getRaceData().toArray());
+                break;
+            case "GA":
+                state[1].getRaceData().insertionSortCFR();
+                graph(state[1].getRaceData().toArray());
+                break;
+            case "MD":
+                state[2].getRaceData().insertionSortCFR();
+                graph(state[2].getRaceData().toArray());
+                break;
+            case "NC":
+                state[3].getRaceData().insertionSortCFR();
+                graph(state[3].getRaceData().toArray());
+                break;
+            case "TN":
+                state[4].getRaceData().insertionSortCFR();
+                graph(state[4].getRaceData().toArray());
+                break;
+            case "VA":
+                state[5].getRaceData().insertionSortCFR();
+                graph(state[5].getRaceData().toArray());
+                break;
+        }
+        window.addShape(title);
     }
 }
