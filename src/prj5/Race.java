@@ -3,6 +3,9 @@ import java.text.DecimalFormat;
 
 /**
  * @version 2021.11.16
+ * @author lane wills (lane20)
+ * @author Jeffrey Zheng (jeffreyz)
+ * @author Ananya Chilakamarthi (ananyac)
  */
 public class Race {
     private double cfr;
@@ -63,7 +66,7 @@ public class Race {
     }
 
     public static int compareAlpha(Race group1, Race group2) {
-        return group1.getRace().compareTo(group2.getRace());
+        return group1.getEthnicity().compareTo(group2.getEthnicity());
     }
 
 

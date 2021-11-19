@@ -6,8 +6,10 @@ import java.io.*;
 
 /**
  * This CovidFileReader class reads the given data
- *
  * @version 2021.11.16
+ * @author lane wills (lane20)
+ * @author Jeffrey Zheng (jeffreyz)
+ * @author Ananya Chilakamarthi (ananyac)
  *
  */
 public class CovidFileReader {

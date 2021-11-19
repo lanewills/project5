@@ -4,6 +4,9 @@ import javax.xml.crypto.Data;
 
 /**
  * @version 2021.11.16
+ * @author lane wills (lane20)
+ * @author Jeffrey Zheng (jeffreyz)
+ * @author Ananya Chilakamarthi (ananyac)
  */
 public class DoublyLinkedList<T> {
     private Node<T> head;
@@ -53,65 +56,65 @@ public class DoublyLinkedList<T> {
         head.setNext(tail);
         tail.setPrevious(head);
         size = 0;
-}
+    }
 
-public int getSize(){
+    public int getSize(){
         return size;
-}
+    }
 
-public boolean isEmpty(){
+    public boolean isEmpty(){
         return size == 0;
-}
+    }
 
-public boolean contains(T object){
+    public boolean contains(T object){
 
-}
+    }
 
-public void add(T object){
+    public void add(T object){
         add(size, object);
-}
+    }
 
-public void add(int index, T object){
+    public void add(int index, T object){
 
-}
+    }
 
-public boolean remove(T object){
+    public boolean remove(T object){
 
-}
+    }
 
-public boolean remove(int index){
+    public boolean remove(int index){
 
-}
+    }
 
-public int getPosition(T object){
+    public int getPosition(T object){
 
-}
+    }
 
-public T getEntry(int index){
+    public T getEntry(int index){
 
-}
+    }
 
-public void clear(){
+    public void clear(){
 
-}
+    }
 
-public Object[] toArray(){
+    public Object[] toArray(){
 
-}
+    }
 
-public String toString(){
+    public String toString(){
 
-}
+    }
 
-public void insertionSortAlpha(){
+    public void insertionSortAlpha(){
 
-}
+    }
 
-public void insertionToSortedAlpha(){
+    public void insertionToSortedAlpha(){
 
-}
+    }
 
-public void insertionSortCFR() {
+    public void insertionSortCFR() {
 
     }
 

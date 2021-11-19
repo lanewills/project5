@@ -4,9 +4,10 @@ import java.io.FileNotFoundException;
 /**
  * This class determines the specific file to read from and creates
  * a Graphic User Interface window
- * @author
- * @author
- * @author
+ * @version 2021.11.16
+ * @author lane wills (lane20)
+ * @author Jeffrey Zheng (jeffreyz)
+ * @author Ananya Chilakamarthi (ananyac)
  */
 public class Input {
     /**

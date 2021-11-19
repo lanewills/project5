@@ -1,5 +1,12 @@
 package prj5;
-
+/**
+ * 
+ * @version 2021.11.16
+ * @author lane wills (lane20)
+ * @author Jeffrey Zheng (jeffreyz)
+ * @author Ananya Chilakamarthi (ananyac)
+ *
+ */
 public class State {
     private String stateName;
     private DoublyLinkedList<Race> raceData;
