@@ -2,6 +2,7 @@ package prj5;
 import java.text.DecimalFormat;
 
 /**
+ * Class for a race that contains all race data.
  * @version 2021.11.16
  * @author lane wills (lane20)
  * @author Jeffrey Zheng (jeffreyz)
