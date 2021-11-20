@@ -230,39 +230,139 @@ public class DoublyLinkedList<T> {
         return curr;
     }
 
+    /**
+     * This method clears the list of all objects
+     */
     public void clear() {
-
+        head = new DoublyLinkedList.Node<T>(null);
+        tail = new DoublyLinkedList.Node<T>(null);
+        head.setNext(tail);
+        tail.setPrevious(head);
+        size = 0;
     }
 
-
+    /**
+     * This public method represents the array list
+     * @return the array representation
+     */
     public Object[] toArray() {
-
+        Object[] array = new Object[getSize()];
+        Node<T> curr = head.next;
+        int count = 0;
+        while (curr != tail){
+            array[count] = curr.getData();
+            curr = curr.next;
+            count++;
+        }
+        return array;
     }
 
 
     public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("(");
+
+        Node<T> curr = head.next;
+        while (curr != tail) {
+            builder.append(curr.data);
+            curr = curr.next;
+            if (curr != tail) {
+                builder.append(", ");
+            }
+        }
+        builder.append(")");
+        return builder.toString();
+    }
+
+    /**
+     * This method sorts the list by using the Alpha Comparator.
+     */
+    public void insertionSortByAlpha() {
+        if (size <= 1){
+            reuturn;
+        }
+        Node<T> curr = head.next.next;
+        head.next.setNext(null);
+        while (curr != tail) {
+            Node<T> temp = curr.next;
+            insertionToSortedAlpha(curr);
+            curr = temp;
+        }
+        curr = curr.previous;
+        while (curr.next != null)
+        {
+            curr = curr.next;
+        }
+        curr.setNext(tail);
+        tail.setPrevious(curr);
 
     }
 
-    //@Jeffrey please implement these.
-    //I don't know the difference between the methods
-    public void insertionSortAlpha() {
-
+    /**
+     * This helper method is used to insert a node into a specified location
+     * @param node that is being inserted to sorted section of list
+     */
+    public void insertionToSortedAlpha(Node<T> node) {
+        Node<T> curr = head.next;
+        Node<T> prev = null;
+        while (curr != null && Race.compareAlpha(
+                (Race)node.data, (Race)curr.data) > 0) {
+            prev = curr;
+            curr = curr.next;
+        }
+        if (prev != null) {
+            prev.setNext(node);
+            node.setNext(curr);
+        }
+        else {
+            node.setNext(curr);
+            head.setNext(node);
+        }
     }
 
-
-    public void insertionToSortedAlpha() {
-
+    /**
+     * This method sorts the list by using CFR comparator
+     */
+    public void insertionSortByCFR() {
+        if (size <= 1) {
+            return;
+        }
+        Node<T> curr = head.next.next;
+        head.next.setNext(null);
+        while (curr != tail) {
+            Node<T> temp = curr.next;
+            insertionToSortedCFR(curr);
+            curr = temp;
+        }
+        curr = curr.previous;
+        while (curr.next != null)
+        {
+            curr = curr.next;
+        }
+        curr.setNext(tail);
+        tail.setPrevious(curr);
     }
 
-
-    public void insertionSortCFR() {
-
-    }
-
-
-    public void insertionToSortedCFR() {
-
+    /**
+     * This helper method is used to insert a node into a specified location
+     * @param node that is being inserted to sorted section of list
+     */
+    public void insertionToSortedCFR(Node<T> node) {
+        Node<T> curr = head.next;
+        Node<T> prev = null;
+        while (curr != null && Race.compareCFR(
+                (Race)node.data, (Race)curr.data) > 0) {
+            prev = curr;
+            curr = curr.next;
+        }
+        if (prev != null) {
+            prev.setNext(node);
+            node.setNext(curr);
+        }
+        else {
+            node.setNext(curr);
+            head.setNext(node);
+        }
     }
 
     /**
