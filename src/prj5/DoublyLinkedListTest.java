@@ -1,17 +1,19 @@
 package prj5;
+
 import student.TestCase;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
  * Tests for the DoublyLinkedList class
+ * 
  * @version 2021.11.16
  * @author lane wills (lane20)
  * @author Jeffrey Zheng (jeffreyz)
  * @author Ananya Chilakamarthi (ananyac)
  */
 public class DoublyLinkedListTest extends TestCase {
-    
+
     private DoublyLinkedList<String> list;
     private DoublyLinkedList<String> emptyListA;
     private DoublyLinkedList<String> emptyListB;
@@ -41,45 +43,46 @@ public class DoublyLinkedListTest extends TestCase {
 
         longListA = new DoublyLinkedList<String>();
 
-            for (int i = 0; i < 100; i++) {
-                longListA.add("item" + i);
-            }
-            longListB = new DoublyLinkedList<String>();
-                for (int i = 0; i < 100; i++){
-                    longListB.add("item" + i);
-                }
-            objectNull = null;
+        for (int i = 0; i < 100; i++) {
+            longListA.add("item" + i);
         }
-    
+        longListB = new DoublyLinkedList<String>();
+        for (int i = 0; i < 100; i++) {
+            longListB.add("item" + i);
+        }
+        objectNull = null;
+    }
+
+
     /**
      * tests the getSize method
      */
-    public void testGetSize()
-    {
+    public void testGetSize() {
         assertEquals(list.getSize(), 0);
         list.add("test");
         assertEquals(list.getSize(), 1);
     }
-    
+
+
     /**
      * tests the isEmpty method
      */
-    public void testIsEmpty()
-    {
+    public void testIsEmpty() {
         assertTrue(list.isEmpty());
         list.add("test");
         assertFalse(list.isEmpty());
     }
-    
+
+
     /**
      * tests the contains method
      */
-    public void testContains()
-    {
+    public void testContains() {
         assertFalse(list.contains("test"));
         list.add("test");
         assertTrue(list.contains("test"));
     }
+
 
     /**
      * Tests the hasNext() method of the iterator implementation.
@@ -205,7 +208,7 @@ public class DoublyLinkedListTest extends TestCase {
         assertTrue(thrown instanceof IllegalStateException);
     }
 
-    
+
     /**
      * Testing the insertionSortByAlpha, insertionSortByCFR, and comparators
      */
@@ -245,42 +248,71 @@ public class DoublyLinkedListTest extends TestCase {
         races.insertionSortByAlpha();
         races.insertionSortByCFR();
     }
-    
+
+
     /**
      * tests the clear method
      */
-    public void testClear()
-    {
+    public void testClear() {
         list.add("test");
         list.add("another test");
         assertFalse(list.isEmpty());
         list.clear();
         assertTrue(list.isEmpty());
-        
+
     }
-    
+
+
     /**
      * tests the toArray method
      */
-    public void testToArray()
-    {
+    public void testToArray() {
         String[] array = new String[2];
         array[0] = "test";
         array[1] = "test1";
-        
+
         list.add("test");
         list.add("test1");
         assertEquals(array, list.toArray());
     }
-    
+
+
     /**
      * tests the toString method
      */
-    public void testToString()
-    {
+    public void testToString() {
         list.add("test");
         list.add("test1");
         assertEquals(list.toString(), "(test, test1)");
     }
 
+
+    /*
+     * tests the remove method
+     */
+    public void testRemove() {
+        assertTrue(shortListA.remove(1));
+
+        assertTrue(shortListA.remove("item1"));
+        assertFalse(shortListA.remove("item5"));
+
+    }
+
+
+    /**
+     * tests getPosition method
+     */
+    public void testGetPosition() {
+
+        assertEquals(shortListA.getPosition("item1"), 1);
+
+    }
+    
+    /**
+     * test lastIndexOf method
+     */
+    public void testLastIndexOf() {
+        assertEquals(longListA.lastIndexOf("item10"), 10);
+        assertEquals(longListA.lastIndexOf("item200"), -1);
+    }
 }
