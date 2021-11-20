@@ -215,7 +215,10 @@ public class DoublyLinkedList<T> {
         return array;
     }
 
-
+    /**
+     * converts the list to a string
+     * @return the list in string form
+     */
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("(");
@@ -325,6 +328,10 @@ public class DoublyLinkedList<T> {
 
     /**
      * Private iterator class is being implemented
+     * @version 2021.11.16
+     * @author lane wills (lane20)
+     * @author Jeffrey Zheng (jeffreyz)
+     * @author Ananya Chilakamarthi (ananyac)
      */
     private class DLListIterator<A> implements Iterator<T> {
 
