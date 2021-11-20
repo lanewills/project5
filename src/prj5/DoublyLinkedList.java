@@ -2,6 +2,7 @@ package prj5;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import doublylinkedlist.DLList.Node;
 
 /**
  * @version 2021.11.16
@@ -43,18 +44,8 @@ public class DoublyLinkedList<T> {
     }
 
 
-    public boolean contains(T object) {
-        if (head == null) {
-            return false;
-        }
-        Node<T> currentElement = head;
-        while (currentElement.next != null) {
-            currentElement = currentElement.next;
-            if (currentElement.getData().equals(object)) {
-                return true;
-            }
-        }
-        return false;
+    public boolean contains(T obj) {
+        return lastIndexOf(obj) != -1;
     }
 
 
@@ -88,7 +79,26 @@ public class DoublyLinkedList<T> {
         size++;
     }
 
+    /**
+     * This method removes the specified object from the list
+     * @param object that is being removed
+     * @return true if the object is removed
+     */
+    public boolean remove(T object){
+        Node<T> curr = head.next();
+        while (!curr.equals(tail)) {
+            if (curr.getData().equals(object)) {
+                curr.previous().setNext(curr.next());
+                curr.next().setPrevious(curr.previous());
+                size--;
+                return true;
+            }
+            curr = curr.next();
+        }
+        return false;
+    }
 
+/**
     public boolean remove(T object) {
         boolean objectFound = false;
         if (object == null) {
@@ -119,7 +129,20 @@ public class DoublyLinkedList<T> {
         return objectFound;
     }
 
+    /**
+     * This remove boolean method removes the object that is at the specified index
+     * @param index that points which one is to be removed
+     * @return true if the removal works
+     */
+    public boolean remove(int index){
+        Node<T> nodeToBeRemoved = getNodeAtIndex(index);
+        nodeToBeRemoved.previous().setNext(nodeToBeRemoved.next());
+        nodeToBeRemoved.next().setPrevious(nodeToBeRemoved.previous());
+        size--;
+        return true;
+    }
 
+    /**
     public boolean remove(int index) {
 
         if (this.head == null) {
@@ -152,7 +175,7 @@ public class DoublyLinkedList<T> {
         return true;
     }
 
-
+/**
     private Node<T> getLastNode(Node<T> node) {
         if (node != null) {
             Node<T> lastNode = node;
@@ -165,6 +188,7 @@ public class DoublyLinkedList<T> {
         }
         return null;
     }
+ */
 
 
     public int getPosition(T object) {
@@ -182,23 +206,6 @@ public class DoublyLinkedList<T> {
         }
         return -1;
     }
-
-
-    public T getEntry(int index) {
-        if (index <=0 ) {
-            return null;
-        }
-        int i =0;
-        Node<T> currentElement = head;
-        while (currentElement.next != null) {
-            currentElement = currentElement.next;
-            i++;
-            if (i == index) {
-                return currentElement.getData();
-            }
-        }
-        return null;
-    }
     
     /**
      * Iterator method creates an Iterator object
@@ -213,8 +220,7 @@ public class DoublyLinkedList<T> {
     /**
      * This private method gets the node at a specific index
      * 
-     * @param index
-     *            is the specified one
+     * @param index is the specified one index
      * @return the current node within the index
      */
     private Node<T> getNodeAtIndex(int index) {
@@ -229,6 +235,24 @@ public class DoublyLinkedList<T> {
         return curr;
     }
 
+    
+    
+    /**
+     * gets the position of the last occurrence of an item
+     * @param obj the item to find
+     * @return index of the item, if not found -1
+     */
+    public int lastIndexOf(T obj) {
+        Node<T> current = tail.previous();
+        for (int i = this.getSize() - 1; i >= 0; i--) {
+            if (current.getData().equals(obj)) {
+                return i;
+            }
+            current = current.previous();
+        }
+        return -1;
+    }
+    
     /**
      * This method clears the list of all objects
      */

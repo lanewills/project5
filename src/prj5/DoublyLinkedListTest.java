@@ -10,13 +10,24 @@ import student.TestCase;
 public class DoublyLinkedListTest extends TestCase {
     
     private DoublyLinkedList<String> list;
-    
+    private DoublyLinkedList<String> emptyListA;
+    private DoublyLinkedList<String> emptyListB;
+    private DoublyLinkedList<String> shortListA;
+    private DoublyLinkedList<String> shortListB;
+    private DoublyLinkedList<String> longListA;
+    private DoublyLinkedList<String> longListB;
+    private String objectNull;
+
     /**
-     * sets up all test methods
+     * sets up all test methods with initial conditions
      */
     public void setUp()
     {
         list = new DoublyLinkedList<String>();
+
+        emptyListA = new DoublyLinkedList<String>();
+        emptyListB = new DoublyLinkedList<String>();
+
     }
     
     /**
@@ -30,12 +41,22 @@ public class DoublyLinkedListTest extends TestCase {
     }
     
     /**
-     * tests the isEmpty method.
+     * tests the isEmpty method
      */
     public void testIsEmpty()
     {
         assertTrue(list.isEmpty());
         list.add("test");
         assertFalse(list.isEmpty());
+    }
+    
+    /**
+     * tests the contains method
+     */
+    public void testContains()
+    {
+        assertFalse(list.contains("test"));
+        list.add("test");
+        assertTrue(list.contains("test"));
     }
 }
