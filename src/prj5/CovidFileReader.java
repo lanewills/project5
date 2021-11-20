@@ -59,11 +59,11 @@ public class CovidFileReader {
             }
         }
         String name = string[0];
-        Race asian = new Race("Asian", Integer.valueOf(line[1]), Integer.valueOf(line[6]));
-        Race black = new Race("Black", Integer.valueOf(line[2]), Integer.valueOf(line[7]));
-        Race latinx = new Race("Latinx", Integer.valueOf(line[3]), Integer.valueOf(line[8]));
-        Race other = new Race("Other", Integer.valueOf(line[4]), Integer.valueOf(line[9]));
-        Race white = new Race("White", Integer.valueOf(line[5]), Integer.valueOf(line[10]));
+        Race asian = new Race("Asian", Integer.valueOf(string[1]), Integer.valueOf(string[6]));
+        Race black = new Race("Black", Integer.valueOf(string[2]), Integer.valueOf(string[7]));
+        Race latinx = new Race("Latinx", Integer.valueOf(string[3]), Integer.valueOf(string[8]));
+        Race other = new Race("Other", Integer.valueOf(string[4]), Integer.valueOf(string[9]));
+        Race white = new Race("White", Integer.valueOf(string[5]), Integer.valueOf(string[10]));
 
         DoublyLinkedList<Race> raceData = new DoublyLinkedList<Race>();
         raceData.add(asian);
@@ -83,18 +83,18 @@ public class CovidFileReader {
         for (State state: states){
             DoublyLinkedList<Race> raceList = state.getRaceData();
             System.out.println(state.getName());
-            raceList.insertionSortAlpha();
+            raceList.insertionSortByAlpha();;
 
-            Object[] raceCities = raceCityList.toArray();
-            for (Object raceCity = raceCities){
+            Object[] races = raceList.toArray();
+            for (Object raceCity = races){
                 System.out.println(raceCity.toString());
             }
             System.out.println("=====");
-            raceCityList.insetionSortCFR();
-            raceCities = raceCityList.toArray();
+            raceList.insertionSortByCFR();
+            races = raceList.toArray();
 
-            for (Object raceCity: raceCities){
-                System.out.println(raceCity.toString());
+            for (Object race: races){
+                System.out.println(race.toString());
             }
             System.out.println("=====");
         }
