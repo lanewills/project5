@@ -83,20 +83,20 @@ public class CovidFileReader {
         for (State state: states){
             DoublyLinkedList<Race> raceList = state.getRaceData();
             System.out.println(state.getName());
-            raceList.insetionSortAlpha();
+            raceList.insertionSortAlpha();
 
             Object[] raceCities = raceCityList.toArray();
             for (Object raceCity = raceCities){
                 System.out.println(raceCity.toString());
             }
-            System.out.println("====");
+            System.out.println("=====");
             raceCityList.insetionSortCFR();
             raceCities = raceCityList.toArray();
 
             for (Object raceCity: raceCities){
                 System.out.println(raceCity.toString());
             }
-            System.out.println("====");
+            System.out.println("=====");
         }
     }
 }

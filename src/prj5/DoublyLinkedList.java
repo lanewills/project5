@@ -10,11 +10,10 @@ import java.util.NoSuchElementException;
  * @author Ananya Chilakamarthi (ananyac)
  */
 public class DoublyLinkedList<T> {
+    
     private Node<T> head;
     private Node<T> tail;
     private int size;
-
-    
 
     /**
      * New LinkedList object is being created
@@ -27,12 +26,18 @@ public class DoublyLinkedList<T> {
         size = 0;
     }
 
-
+    /**
+     * gets the number of items in the list
+     * @return number of items
+     */
     public int getSize() {
         return size;
     }
 
-
+    /**
+     * tells whether or not the list is empty.
+     * @return true if empty, false if not
+     */
     public boolean isEmpty() {
         return size == 0;
     }
@@ -174,7 +179,35 @@ public class DoublyLinkedList<T> {
         }
         return null;
     }
+    
+    /**
+     * Iterator method creates an Iterator object
+     *
+     * @return new Iterator object
+     */
+    public Iterator<T> iterator() {
+        return new DLListIterator<T>();
+    }
 
+
+    /**
+     * This private method gets the node at a specific index
+     * 
+     * @param index
+     *            is the specified one
+     * @return the current node within the index
+     */
+    private Node<T> getNodeAtIndex(int index) {
+        if (index < 0 || size <= index) {
+            throw new IndexOutOfBoundsException("No element exists at "
+                + index);
+        }
+        Node<T> curr = head.next();
+        for (int i = 0; i < index; i++) {
+            curr = curr.next();
+        }
+        return curr;
+    }
 
     public void clear() {
 
@@ -279,35 +312,6 @@ public class DoublyLinkedList<T> {
     }
 
     /**
-     * Iterator method creates Iterator object
-     *
-     * @return new Iterator object
-     */
-    public Iterator<T> iterator() {
-        return new DLListIterator<T>();
-    }
-
-
-    /**
-     * This private method gets the node at a specific index
-     * 
-     * @param index
-     *            is the specified one
-     * @return the current node within the index
-     */
-    private Node<T> getNodeAtIndex(int index) {
-        if (index < 0 || size <= index) {
-            throw new IndexOutOfBoundsException("No element exists at "
-                + index);
-        }
-        Node<T> curr = head.next();
-        for (int i = 0; i < index; i++) {
-            curr = curr.next();
-        }
-        return curr;
-    }
-
-    /**
      * internal private class for a node which makes up
      * the doubly linked list and stores data
      * @param <T> the type of object to be stored.
@@ -316,7 +320,7 @@ public class DoublyLinkedList<T> {
      * @author Jeffrey Zheng (jeffreyz)
      * @author Ananya Chilakamarthi (ananyac)
      */
-    public static class Node<T> {
+    private static class Node<T> {
         private T data;
         private Node<T> next;
         private Node<T> previous;
