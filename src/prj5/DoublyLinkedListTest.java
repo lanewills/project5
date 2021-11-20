@@ -1,5 +1,8 @@
 package prj5;
 import student.TestCase;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * Tests for the DoublyLinkedList class
  * @version 2021.11.16
@@ -77,21 +80,130 @@ public class DoublyLinkedListTest extends TestCase {
         list.add("test");
         assertTrue(list.contains("test"));
     }
-    /*
-     * tests the remove method
-     */
-    public void remove() {
-        assertNull(shortListA.remove(-1));
-        assertTrue(shortListA.remove(1));
-        assertFalse(emptyListA.remove(1));
-        assertFalse(shortListA.remove(8));
-        assertTrue(shortListA.remove("item1"));
-        assertFalse(shortListA.remove("item5"));
-        
-    }
+
     /**
-     * 
+     * Tests the hasNext() method of the iterator implementation.
      */
-    
-    
+    public void testIterator() {
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        list.add("D");
+        list.add("E");
+        list.add("F");
+        Iterator<String> iter = list.iterator();
+        assertTrue(iter.hasNext());
+    }
+
+
+    /**
+     * Tests the hasNext() method on an empty list
+     */
+    public void testIterator2() {
+        Iterator<String> iter = list.iterator();
+        assertFalse(iter.hasNext());
+    }
+
+
+    /**
+     * Tests the hasNext() method on a list with one entry
+     */
+    public void testIterator3() {
+        list.add("A");
+        Iterator<String> iter = list.iterator();
+        assertTrue(iter.hasNext());
+    }
+
+
+    /**
+     * Tests the next() method
+     */
+
+    public void testIterator4() {
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        list.add("D");
+        list.add("E");
+        list.add("F");
+        Iterator<String> iterator = list.iterator();
+        assertEquals("A", iterator.next());
+        assertEquals("B", iterator.next());
+    }
+
+
+    /**
+     * Tests the next method when the list is empty
+     */
+
+    public void testIterator5() {
+        Iterator<String> iter = list.iterator();
+        Exception thrown = null;
+        try {
+            iter.next();
+        }
+        catch (Exception e) {
+            thrown = e;
+        }
+        assertNotNull(thrown);
+        assertTrue(thrown instanceof NoSuchElementException);
+    }
+
+
+    /**
+     * Tests the remove() method of the iterator implementation
+     */
+
+    public void testIterator6() {
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        list.add("D");
+        list.add("E");
+        list.add("F");
+        Iterator<String> iter = list.iterator();
+        iter.next();
+        iter.remove();
+        assertEquals("(B, C, D, E, F)", list.toString());
+        assertEquals(5, list.getSize());
+        Exception thrown = null;
+        try {
+            iter.remove();
+        }
+        catch (Exception e) {
+            thrown = e;
+        }
+        assertNotNull(thrown);
+        assertTrue(thrown instanceof IllegalStateException);
+        iter.next();
+        iter.remove();
+        assertEquals("(C, D, E, F)", list.toString());
+        assertEquals(4, list.getSize());
+    }
+
+
+    /**
+     * Tests the remove() method when next() has not been previously
+     * called
+     */
+    public void testIterator7() {
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        list.add("D");
+        list.add("E");
+        list.add("F");
+        Iterator<String> iter = list.iterator();
+        Exception thrown = null;
+        try {
+            iter.remove();
+        }
+        catch (Exception e) {
+            thrown = e;
+        }
+        assertNotNull(thrown);
+        assertTrue(thrown instanceof IllegalStateException);
+    }
+
+
 }
