@@ -1,6 +1,7 @@
 package prj5;
 
-import javax.xml.crypto.Data;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * @version 2021.11.16
@@ -13,44 +14,7 @@ public class DoublyLinkedList<T> {
     private Node<T> tail;
     private int size;
 
-    /**
-     *
-     * @param <D>
-     */
-    public static class Node<D> {
-        private Data data;
-        private Node<D> next;
-        private Node<D> previous;
-
-        public Node(Data d) {
-            data = d;
-        }
-
-
-        public void setNext(Node<D> node) {
-            next = node;
-        }
-
-
-        public void setPrevious(Node<D> node) {
-            previous = node;
-        }
-
-
-        public Node<D> next() {
-            return next;
-        }
-
-
-        public Node<D> previous() {
-            return previous;
-        }
-
-
-        public Data getData() {
-            return data;
-        }
-    }
+    
 
     /**
      * New LinkedList object is being created
@@ -78,7 +42,7 @@ public class DoublyLinkedList<T> {
         if (head == null) {
             return false;
         }
-        Node currentElement = head;
+        Node<T> currentElement = head;
         while (currentElement.next != null) {
             currentElement = currentElement.next;
             if (currentElement.getData().equals(object)) {
@@ -183,7 +147,7 @@ public class DoublyLinkedList<T> {
             return -1;
         }
         int i =0;
-        Node currentElement = head;
+        Node<T> currentElement = head;
         while (currentElement.next != null) {
             currentElement = currentElement.next;
             i++;
@@ -200,7 +164,7 @@ public class DoublyLinkedList<T> {
             return null;
         }
         int i =0;
-        Node currentElement = head;
+        Node<T> currentElement = head;
         while (currentElement.next != null) {
             currentElement = currentElement.next;
             i++;
@@ -250,9 +214,9 @@ public class DoublyLinkedList<T> {
     /**
      * Private iterator class is being implemented
      */
-    private class DLListIterator<A> implements Iterator<E> {
+    private class DLListIterator<A> implements Iterator<T> {
 
-        private Node<E> next;
+        private Node<T> next;
         private boolean calledNext;
 
         /**
@@ -283,7 +247,7 @@ public class DoublyLinkedList<T> {
          *             if there are no nodes left in the list
          */
         @Override
-        public E next() {
+        public T next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
@@ -319,8 +283,8 @@ public class DoublyLinkedList<T> {
      *
      * @return new Iterator object
      */
-    public Iterator<E> iterator() {
-        return new DLListIterator<E>();
+    public Iterator<T> iterator() {
+        return new DLListIterator<T>();
     }
 
 
@@ -344,72 +308,46 @@ public class DoublyLinkedList<T> {
     }
 
     /**
-     * private class Node {
-     * T element;
-     * Node previous;
-     * Node next;
-     * 
-     * public Node(T element, Node next, Node previous) {
-     * this.element = element;
-     * this.next = next;
-     * this.previous = previous;
-     * }
-     * }
-     * 
-     * Node head;
-     * Node tail;
-     * int size;
-     * 
-     * public int size() {
-     * return size;
-     * }
-     * 
-     * 
-     * public boolean isEmpty() {
-     * return size == 0;
-     * }
-     * public void addFirst(T element) {
-     * Node temp = new Node(element, head, null);
-     * if(head != null) {
-     * head.previous = temp;
-     * }
-     * head = temp;
-     * if(tail == null) {
-     * tail = temp;
-     * }
-     * size++;
-     * }
-     * 
-     * public void addLast(T element) {
-     * Node temp = new Node (element, null, tail);
-     * if(tail != null) {
-     * tail.next = temp;
-     * }
-     * tail = temp;
-     * if(head == null) {
-     * head = temp;
-     * }
-     * size++;
-     * }
-     * 
-     * /*
-     * public void addNode(int data) {
-     * Node newNode = new Node(data);
-     * 
-     * if (head == null) {
-     * head = newNode;
-     * tail = newNode;
-     * 
-     * head.previous = null;
-     * tail.next = null;
-     * 
-     * }
-     * else {
-     * tail.next = newNode;
-     * newNode.previous = tail;
-     * tail = newNode;
-     * tail.next = null;
-     * }
-     * }
+     * internal private class for a node which makes up
+     * the doubly linked list and stores data
+     * @param <T> the type of object to be stored.
+     * @version 2021.11.16
+     * @author lane wills (lane20)
+     * @author Jeffrey Zheng (jeffreyz)
+     * @author Ananya Chilakamarthi (ananyac)
      */
+    public static class Node<T> {
+        private T data;
+        private Node<T> next;
+        private Node<T> previous;
+
+        public Node(T d) {
+            data = d;
+        }
+
+
+        public void setNext(Node<T> node) {
+            next = node;
+        }
+
+
+        public void setPrevious(Node<T> node) {
+            previous = node;
+        }
+
+
+        public Node<T> next() {
+            return next;
+        }
+
+
+        public Node<T> previous() {
+            return previous;
+        }
+
+
+        public T getData() {
+            return data;
+        }
+    }
 }
