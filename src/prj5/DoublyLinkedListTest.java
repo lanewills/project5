@@ -36,15 +36,12 @@ public class DoublyLinkedListTest extends TestCase {
         shortListB.add("item2");
         shortListB.add("item3");
 
-        longListA = new DoublyLinkedList<String>()
+        longListA = new DoublyLinkedList<String>();
 
-            for (int i = 0; i < 100; i++)
-
-            {
-                longListA.add("item" + i)
+            for (int i = 0; i < 100; i++) {
+                longListA.add("item" + i);
             }
-
-                longListB = new DoublyLinkedList<String();
+            longListB = new DoublyLinkedList<String>();
                 for (int i = 0; i < 100; i++){
                     longListB.add("item" + i);
                 }
