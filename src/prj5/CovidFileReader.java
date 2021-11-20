@@ -38,7 +38,7 @@ public class CovidFileReader {
         int i = 0;
         while (scanner.hasNextLine()){
             String [] string = scanner.nextLine().split(",", 11);
-            states[i] = readState(line);
+            states[i] = readState(string);
             i++;
         }
         scanner.close();
@@ -84,7 +84,7 @@ public class CovidFileReader {
             raceList.insertionSortByAlpha();;
 
             Object[] races = raceList.toArray();
-            for (Object raceCity = races){
+            for (Object raceCity : races){
                 System.out.println(raceCity.toString());
             }
             System.out.println("=====");
