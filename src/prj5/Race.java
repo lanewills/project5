@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
  * @author Jeffrey Zheng (jeffreyz)
  * @author Ananya Chilakamarthi (ananyac)
  */
-public class Race {
+public class Race implements Comparable<Race>{
     private double cfr;
     private int deaths;
     private int cases;
@@ -118,5 +118,23 @@ public class Race {
             return -1;
         }
         return 1;
+    }
+    
+    /**
+     * compares two races first on CFR then on name
+     * @param other the race to compare
+     * @return 1 if this is greater, -1 if less, 0 if equal
+     */
+    public int compareTo(Race other)
+    {
+        if (this.getCFR() > other.getCFR())
+        {
+            return 1;
+        }
+        if (this.getCFR() < other.getCFR())
+        {
+            return -1;
+        }
+        return this.getEthnicity().compareTo(other.getEthnicity());
     }
 }
