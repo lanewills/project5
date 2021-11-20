@@ -2,6 +2,7 @@ package prj5;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import doublylinkedlist.DLList.Node;
 
 /**
  * @version 2021.11.16
@@ -64,8 +65,28 @@ public class DoublyLinkedList<T> {
 
 
     public void add(int index, T object) {
-        // How would I create a Node with object?
+        if (index < 0 || size < index) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (object == null) {
+            throw new IllegalArgumentException("Cannot add null "
+                    + "objects to a list");
+        }
 
+        Node<T> nodeAfter;
+        if (index == size) {
+            nodeAfter = tail;
+        } 
+        else {
+            nodeAfter = getNodeAtIndex(index);
+        }
+
+        Node<T> addition = new Node<T>(object);
+        addition.setPrevious(nodeAfter.previous());
+        addition.setNext(nodeAfter);
+        nodeAfter.previous().setNext(addition);
+        nodeAfter.setPrevious(addition);
+        size++;
     }
 
 
