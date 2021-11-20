@@ -321,4 +321,23 @@ public class DoublyLinkedListTest extends TestCase {
         assertEquals(longListA.lastIndexOf("item10"), 10);
         assertEquals(longListA.lastIndexOf("item200"), -1);
     }
+    /**
+     * test add method
+     */
+    public void testAdd() {
+        DoublyLinkedList<String> newList = new DoublyLinkedList<String>();
+        newList.add(0, "item1");
+        newList.add(1, "item2");
+        newList.add(2, "item3");
+        newList.add("item4");
+        assertEquals(newList.getSize(), 4);
+        assertEquals(newList.lastIndexOf("item2"), 1);
+        assertEquals(newList.lastIndexOf("item1"), 0);
+        assertEquals(newList.lastIndexOf("item3"), 2);
+        assertEquals(newList.lastIndexOf("item4"), 3);
+
+        
+        
+        
+    }
 }
