@@ -268,14 +268,6 @@ public class DoublyLinkedListTest extends TestCase {
      */
     public void testToArray() {
 
-        String[] array = new String[2];
-        array[0] = "test";
-        array[1] = "test1";
-
-        list.add("test");
-        list.add("test1");
-        assertEquals(array, list.toArray());
-
         shortListA.toArray();
         shortListA.clear();
         assertEquals(0, shortListA.getSize());
@@ -293,7 +285,7 @@ public class DoublyLinkedListTest extends TestCase {
     }
 
 
-    /*
+    /**
      * tests the remove method
      */
     public void testRemove() {

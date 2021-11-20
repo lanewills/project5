@@ -86,15 +86,15 @@ public class CovidFileReader {
             Object[] races = raceList.toArray();
             for (Object raceCity : races){
                 System.out.println(raceCity.toString());
+                System.out.println("=====");
             }
-            System.out.println("=====");
             raceList.insertionSortByCFR();
             races = raceList.toArray();
 
             for (Object race: races){
                 System.out.println(race.toString());
+                System.out.println("=====");
             }
-            System.out.println("=====");
         }
     }
 }
