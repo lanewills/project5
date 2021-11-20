@@ -21,14 +21,35 @@ public class DoublyLinkedListTest extends TestCase {
     /**
      * sets up all test methods with initial conditions
      */
-    public void setUp()
-    {
+    public void setUp() {
         list = new DoublyLinkedList<String>();
-
         emptyListA = new DoublyLinkedList<String>();
         emptyListB = new DoublyLinkedList<String>();
+        shortListA = new DoublyLinkedList<String>();
+        shortListB = new DoublyLinkedList<String>();
 
-    }
+        shortListA.add("item1");
+        shortListA.add("item2");
+        shortListA.add("item3");
+
+        shortListB.add("item1");
+        shortListB.add("item2");
+        shortListB.add("item3");
+
+        longListA = new DoublyLinkedList<String>()
+
+            for (int i = 0; i < 100; i++)
+
+            {
+                longListA.add("item" + i)
+            }
+
+                longListB = new DoublyLinkedList<String();
+                for (int i = 0; i < 100; i++){
+                    longListB.add("item" + i);
+                }
+            objectNull = null;
+        }
     
     /**
      * tests the getSize method
