@@ -278,7 +278,7 @@ public class DoublyLinkedList<T> {
      */
     public void insertionSortByAlpha() {
         if (size <= 1){
-            reuturn;
+            return;
         }
         Node<T> curr = head.next.next;
         head.next.setNext(null);
