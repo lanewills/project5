@@ -2,7 +2,6 @@ package prj5;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import doublylinkedlist.DLList.Node;
 
 /**
  * @version 2021.11.16
@@ -43,17 +42,28 @@ public class DoublyLinkedList<T> {
         return size == 0;
     }
 
-
+    /**
+     * checks to see if the list contains an object
+     * @param obj the object to find
+     * @return true if the object is in the list
+     */
     public boolean contains(T obj) {
         return lastIndexOf(obj) != -1;
     }
 
-
+    /**
+     * adds an object to the end of the list
+     * @param object the object to add.
+     */
     public void add(T object) {
         add(size, object);
     }
 
-
+    /**
+     * adds an object to a specific index
+     * @param index the index to put the object in
+     * @param object the object to add
+     */
     public void add(int index, T object) {
         if (index < 0 || size < index) {
             throw new IndexOutOfBoundsException();
@@ -98,37 +108,6 @@ public class DoublyLinkedList<T> {
         return false;
     }
 
-/**
-    public boolean remove(T object) {
-        boolean objectFound = false;
-        if (object == null) {
-            return objectFound;
-        }
-
-        Node<T> currentNode = this.head;
-        while (!objectFound) {
-            if (currentNode.getData().equals(object)) {
-                Node<T> previousNode = currentNode.previous();
-                Node<T> nextNode = currentNode.next();
-                if (previousNode != null) {
-                    previousNode.setNext(nextNode);
-                }
-                else {
-                    this.head = nextNode;
-                }
-                if (nextNode != null) {
-                    nextNode.setPrevious(previousNode);
-                }
-                objectFound = true;
-            }
-            else {
-                currentNode = currentNode.next();
-            }
-        }
-        size--;
-        return objectFound;
-    }
-
     /**
      * This remove boolean method removes the object that is at the specified index
      * @param index that points which one is to be removed
@@ -143,54 +122,10 @@ public class DoublyLinkedList<T> {
     }
 
     /**
-    public boolean remove(int index) {
-
-        if (this.head == null) {
-            return false;
-        }
-        if (index < 0 || index >= this.size) {
-            throw new IndexOutOfBoundsException("Not a valid index");
-        }
-        if (index == 0) {
-            Node<T> nextNode = this.head.next();
-            if (nextNode != null) {
-                nextNode.setPrevious(null);
-            }
-            this.head = nextNode;
-        }
-        else if (index == this.size - 1) {
-            Node<T> lastNode = getLastNode(this.head);
-            Node<T> secondLastNode = lastNode.previous();
-            secondLastNode.setNext(null);
-        }
-
-        else {
-            Node<T> nodeToBeDelete = getNodeAtIndex(index);
-            Node<T> next = nodeToBeDelete.next();
-            Node<T> previous = nodeToBeDelete.previous();
-            next.setPrevious(previous);
-            previous.setNext(next);
-        }
-        size--;
-        return true;
-    }
-
-/**
-    private Node<T> getLastNode(Node<T> node) {
-        if (node != null) {
-            Node<T> lastNode = node;
-            if (lastNode.next() != null) {
-                return getLastNode(lastNode.next());
-            }
-            else {
-                return lastNode;
-            }
-        }
-        return null;
-    }
- */
-
-
+     * gets an objects position in the list
+     * @param object the object to find
+     * @return index number of the object
+     */
     public int getPosition(T object) {
         if (head == null) {
             return -1;
@@ -280,7 +215,10 @@ public class DoublyLinkedList<T> {
         return array;
     }
 
-
+    /**
+     * converts the list to a string
+     * @return the list in string form
+     */
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("(");
@@ -302,7 +240,7 @@ public class DoublyLinkedList<T> {
      */
     public void insertionSortByAlpha() {
         if (size <= 1){
-            reuturn;
+            return;
         }
         Node<T> curr = head.next.next;
         head.next.setNext(null);
@@ -390,6 +328,10 @@ public class DoublyLinkedList<T> {
 
     /**
      * Private iterator class is being implemented
+     * @version 2021.11.16
+     * @author lane wills (lane20)
+     * @author Jeffrey Zheng (jeffreyz)
+     * @author Ananya Chilakamarthi (ananyac)
      */
     private class DLListIterator<A> implements Iterator<T> {
 
@@ -468,32 +410,51 @@ public class DoublyLinkedList<T> {
         private T data;
         private Node<T> next;
         private Node<T> previous;
-
+        
+        /**
+         * makes a new node with the data
+         * @param d the data for the node
+         */
         public Node(T d) {
             data = d;
         }
 
-
+        /**
+         * sets the next node to this node
+         * @param node the node to be set as next
+         */
         public void setNext(Node<T> node) {
             next = node;
         }
 
-
+        /**
+         * sets the previous node to this node
+         * @param node the node to be set as previous
+         */
         public void setPrevious(Node<T> node) {
             previous = node;
         }
 
-
+        /**
+         * gets the node's next
+         * @return the next node
+         */
         public Node<T> next() {
             return next;
         }
 
-
+        /**
+         * gets the node's previous
+         * @return the previous node
+         */
         public Node<T> previous() {
             return previous;
         }
 
-
+        /**
+         * gets the data in a node
+         * @return the data in a node
+         */
         public T getData() {
             return data;
         }
