@@ -28,4 +28,14 @@ public class DoublyLinkedListTest extends TestCase {
         list.add("test");
         assertEquals(list.getSize(), 1);
     }
+    
+    /**
+     * tests the isEmpty method.
+     */
+    public void testIsEmpty()
+    {
+        assertTrue(list.isEmpty());
+        list.add("test");
+        assertFalse(list.isEmpty());
+    }
 }
