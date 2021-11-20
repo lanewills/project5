@@ -204,7 +204,7 @@ public class DoublyLinkedList<T> {
      * @return the array representation
      */
     public Object[] toArray() {
-        Object[] array = new Object[getSize()];
+        Object[] array = new Object[this.getSize()];
         Node<T> curr = head.next;
         int count = 0;
         while (curr != tail){

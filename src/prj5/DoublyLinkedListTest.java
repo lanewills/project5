@@ -205,5 +205,82 @@ public class DoublyLinkedListTest extends TestCase {
         assertTrue(thrown instanceof IllegalStateException);
     }
 
+    
+    /**
+     * Testing the insertionSortByAlpha, insertionSortByCFR, and comparators
+     */
+    public void testSorting() {
+        Race white1 = new Race("a", 10, 5);
+        Race white2 = new Race("b", 50, 10);
+        Race white3 = new Race("c", -1, -1);
+        Race black1 = new Race("d", 20, 10);
+        Race black2 = new Race("e", 50, 9);
+        Race black3 = new Race("f", 26, 3);
+        DoublyLinkedList<Race> races = new DoublyLinkedList<Race>();
+        races.insertionSortByAlpha();
+        races.insertionSortByCFR();
+        races.add(white1);
+        races.add(white2);
+        races.add(white3);
+        races.add(black1);
+        races.add(black2);
+        races.add(black3);
+        races.insertionSortByAlpha();
+        races.insertionSortByCFR();
+        emptyListA.insertionSortByAlpha();
+        emptyListA.insertionSortByAlpha();
+        assertEquals(0, emptyListA.getSize());
+        white1 = new Race("a", 10, 5);
+        white2 = new Race("b", 10, 5);
+        white3 = new Race("c", 10, 5);
+        black1 = new Race("d", 10, 5);
+        black2 = new Race("e", 10, 5);
+        black3 = new Race("f", 10, 5);
+        races.add(white1);
+        races.add(white2);
+        races.add(white3);
+        races.add(black1);
+        races.add(black2);
+        races.add(black3);
+        races.insertionSortByAlpha();
+        races.insertionSortByCFR();
+    }
+    
+    /**
+     * tests the clear method
+     */
+    public void testClear()
+    {
+        list.add("test");
+        list.add("another test");
+        assertFalse(list.isEmpty());
+        list.clear();
+        assertTrue(list.isEmpty());
+        
+    }
+    
+    /**
+     * tests the toArray method
+     */
+    public void testToArray()
+    {
+        String[] array = new String[2];
+        array[0] = "test";
+        array[1] = "test1";
+        
+        list.add("test");
+        list.add("test1");
+        assertEquals(array, list.toArray());
+    }
+    
+    /**
+     * tests the toString method
+     */
+    public void testToString()
+    {
+        list.add("test");
+        list.add("test1");
+        assertEquals(list.toString(), "(test, test1)");
+    }
 
 }

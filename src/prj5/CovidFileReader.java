@@ -1,5 +1,4 @@
 package prj5;
-import com.sun.xml.internal.bind.v2.runtime.output.StAXExStreamWriterOutput;
 
 import java.util.Scanner;
 import java.io.*;
@@ -23,7 +22,6 @@ public class CovidFileReader {
     public CovidFileReader(String fileName) throws FileNotFoundException {
         readFile(fileName);
         outputFile(states);
-        new CovidWindow(states);
     }
 
     /**
@@ -40,7 +38,7 @@ public class CovidFileReader {
         int i = 0;
         while (scanner.hasNextLine()){
             String [] string = scanner.nextLine().split(",", 11);
-            states[i] = readState(line);
+            states[i] = readState(string);
             i++;
         }
         scanner.close();
@@ -86,7 +84,7 @@ public class CovidFileReader {
             raceList.insertionSortByAlpha();;
 
             Object[] races = raceList.toArray();
-            for (Object raceCity = races){
+            for (Object raceCity : races){
                 System.out.println(raceCity.toString());
             }
             System.out.println("=====");
