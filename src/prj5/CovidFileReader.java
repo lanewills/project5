@@ -1,5 +1,4 @@
 package prj5;
-import com.sun.xml.internal.bind.v2.runtime.output.StAXExStreamWriterOutput;
 
 import java.util.Scanner;
 import java.io.*;
@@ -23,7 +22,6 @@ public class CovidFileReader {
     public CovidFileReader(String fileName) throws FileNotFoundException {
         readFile(fileName);
         outputFile(states);
-        new CovidWindow(states);
     }
 
     /**

@@ -204,5 +204,41 @@ public class DoublyLinkedListTest extends TestCase {
         assertNotNull(thrown);
         assertTrue(thrown instanceof IllegalStateException);
     }
-
+    
+    /**
+     * tests the clear method
+     */
+    public void testClear()
+    {
+        list.add("test");
+        list.add("another test");
+        assertFalse(list.isEmpty());
+        list.clear();
+        assertTrue(list.isEmpty());
+        
+    }
+    
+    /**
+     * tests the toArray method
+     */
+    public void testToArray()
+    {
+        String[] array = new String[2];
+        array[0] = "test";
+        array[1] = "test1";
+        
+        list.add("test");
+        list.add("test1");
+        assertEquals(array, list.toArray());
+    }
+    
+    /**
+     * tests the toString method
+     */
+    public void testToString()
+    {
+        list.add("test");
+        list.add("test1");
+        assertEquals(list.toString(), "(test, test1)");
+    }
 }
