@@ -79,7 +79,26 @@ public class DoublyLinkedList<T> {
         size++;
     }
 
+    /**
+     * This method removes the specified object from the list
+     * @param object that is being removed
+     * @return true if the object is removed
+     */
+    public boolean remove(T object){
+        Node<T> curr = head.next();
+        while (!curr.equals(tail)) {
+            if (curr.getData().equals(object)) {
+                curr.previous().setNext(curr.next());
+                curr.next().setPrevious(curr.previous());
+                size--;
+                return true;
+            }
+            curr = curr.next();
+        }
+        return false;
+    }
 
+/**
     public boolean remove(T object) {
         boolean objectFound = false;
         if (object == null) {
@@ -110,7 +129,20 @@ public class DoublyLinkedList<T> {
         return objectFound;
     }
 
+    /**
+     * This remove boolean method removes the object that is at the specified index
+     * @param index that points which one is to be removed
+     * @return true if the removal works
+     */
+    public boolean remove(int index){
+        Node<T> nodeToBeRemoved = getNodeAtIndex(index);
+        nodeToBeRemoved.previous().setNext(nodeToBeRemoved.next());
+        nodeToBeRemoved.next().setPrevious(nodeToBeRemoved.previous());
+        size--;
+        return true;
+    }
 
+    /**
     public boolean remove(int index) {
 
         if (this.head == null) {
@@ -143,7 +175,7 @@ public class DoublyLinkedList<T> {
         return true;
     }
 
-
+/**
     private Node<T> getLastNode(Node<T> node) {
         if (node != null) {
             Node<T> lastNode = node;
@@ -156,6 +188,7 @@ public class DoublyLinkedList<T> {
         }
         return null;
     }
+ */
 
 
     public int getPosition(T object) {
