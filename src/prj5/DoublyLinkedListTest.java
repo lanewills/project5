@@ -77,4 +77,21 @@ public class DoublyLinkedListTest extends TestCase {
         list.add("test");
         assertTrue(list.contains("test"));
     }
+    /*
+     * tests the remove method
+     */
+    public void remove() {
+        assertNull(shortListA.remove(-1));
+        assertTrue(shortListA.remove(1));
+        assertFalse(emptyListA.remove(1));
+        assertFalse(shortListA.remove(8));
+        assertTrue(shortListA.remove("item1"));
+        assertFalse(shortListA.remove("item5"));
+        
+    }
+    /**
+     * 
+     */
+    
+    
 }
