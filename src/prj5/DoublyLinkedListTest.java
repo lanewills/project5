@@ -30,12 +30,22 @@ public class DoublyLinkedListTest extends TestCase {
     }
     
     /**
-     * tests the isEmpty method.
+     * tests the isEmpty method
      */
     public void testIsEmpty()
     {
         assertTrue(list.isEmpty());
         list.add("test");
         assertFalse(list.isEmpty());
+    }
+    
+    /**
+     * tests the contains method
+     */
+    public void testContains()
+    {
+        assertFalse(list.contains("test"));
+        list.add("test");
+        assertTrue(list.contains("test"));
     }
 }
