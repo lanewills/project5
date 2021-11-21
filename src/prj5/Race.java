@@ -115,9 +115,9 @@ public class Race implements Comparable<Race>{
         }
         if (cfrDifference > 0)
         {
-            return -1;
+            return 1;
         }
-        return 1;
+        return -1;
     }
     
     /**

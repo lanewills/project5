@@ -52,16 +52,16 @@ public class CovidFileReader {
      */
     private State readState(String[] string){
         for (int i = 0; i < 11; i++){
-            if (string[i].equals("Does not apply")){
+            if (string[i].equals("NA")){
                 string[i] = "-1";
             }
         }
         String name = string[0];
-        Race asian = new Race("Asian", Integer.valueOf(string[1]), Integer.valueOf(string[6]));
-        Race black = new Race("Black", Integer.valueOf(string[2]), Integer.valueOf(string[7]));
-        Race latinx = new Race("Latinx", Integer.valueOf(string[3]), Integer.valueOf(string[8]));
-        Race other = new Race("Other", Integer.valueOf(string[4]), Integer.valueOf(string[9]));
-        Race white = new Race("White", Integer.valueOf(string[5]), Integer.valueOf(string[10]));
+        Race asian = new Race("white", Integer.valueOf(string[1]), Integer.valueOf(string[6]));
+        Race black = new Race("black", Integer.valueOf(string[2]), Integer.valueOf(string[7]));
+        Race latinx = new Race("latinx", Integer.valueOf(string[3]), Integer.valueOf(string[8]));
+        Race other = new Race("asian", Integer.valueOf(string[4]), Integer.valueOf(string[9]));
+        Race white = new Race("other", Integer.valueOf(string[5]), Integer.valueOf(string[10]));
 
         DoublyLinkedList<Race> raceData = new DoublyLinkedList<Race>();
         raceData.add(asian);
@@ -86,15 +86,17 @@ public class CovidFileReader {
             Object[] races = raceList.toArray();
             for (Object raceCity : races){
                 System.out.println(raceCity.toString());
-                System.out.println("=====");
+                
             }
+            System.out.println("=====");
             raceList.insertionSortByCFR();
             races = raceList.toArray();
 
             for (Object race: races){
                 System.out.println(race.toString());
-                System.out.println("=====");
+                
             }
+            System.out.println("=====");
         }
     }
 }
