@@ -23,6 +23,7 @@ public class CovidWindow {
     private Button representNC;
     private Button representTN;
     private Button representVA;
+    private Button quit;
     private State[] state;
     private TextShape title;
     private Shape whiteBar;
@@ -54,6 +55,7 @@ public class CovidWindow {
         window.setTitle("Graph: Lane Jeffrey Ananya ");
         sortByAlpha = new Button("Sort by Alpha");
         sortByCFR = new Button("Sort by CFR");
+        quit = new Button("Quit");
         representDC = new Button("Represent DC");
         representVA = new Button("Represent VA");
         representMD = new Button("Represent MD");
@@ -67,6 +69,7 @@ public class CovidWindow {
         window.addButton(representNC, WindowSide.SOUTH);
         window.addButton(representGA, WindowSide.SOUTH);
         window.addButton(sortByAlpha, WindowSide.NORTH);
+        window.addButton(quit, WindowSide.NORTH);
         window.addButton(sortByCFR, WindowSide.NORTH);
         representDC.onClick(this, "clickedDC");
         representTN.onClick(this, "clickedTN");
@@ -75,6 +78,7 @@ public class CovidWindow {
         representNC.onClick(this, "clickedNC");
         representGA.onClick(this, "clickedGA");
         sortByAlpha.onClick(this, "clickedAlpha");
+        quit.onClick(this, "clickedQuit");
         sortByCFR.onClick(this, "clickedCFR");
         this.state = state;
     }
@@ -173,6 +177,15 @@ public class CovidWindow {
         Object[] Race = state[5].getRaceData().toArray();
         extractData(Race);
         graph(Race);
+    }
+    
+    /**
+     * Method that quits the program when the quit button is pressed.
+     * @param button The button to click
+     */
+    public void clickedQuit(Button button)
+    {
+        System.exit(0);
     }
 
     /**
