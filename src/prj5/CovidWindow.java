@@ -121,7 +121,7 @@ public class CovidWindow {
      */
     public void clickedMD(Button button) {
         window.removeAllShapes();
-        title = new TextShape(5, 0, "DC Case Fatality Ratios by Race");
+        title = new TextShape(5, 0, "MD Case Fatality Ratios by Race");
         int x = (window.getGraphPanelWidth() / 2) - (title.getWidth()
                 / 2);
         int y = (window.getGraphPanelHeight() / 2) - 125;
