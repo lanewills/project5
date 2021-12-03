@@ -37,6 +37,7 @@ public class CovidFileReader {
         scanner.nextLine();
         states = new State[6];
         int i = 0;
+        //This loops through to see if there is a next line to be split
         while (scanner.hasNextLine()){
             String [] string = scanner.nextLine().split(",", 11);
             states[i] = readState(string);
@@ -52,18 +53,22 @@ public class CovidFileReader {
      * @return State where the data is being implemented
      */
     private State readState(String[] string){
+        //loops through the given line to be read and see if it is equal to specified text
         for (int i = 0; i < 11; i++){
             if (string[i].equals("NA")){
                 string[i] = "-1";
             }
         }
+        
+        //for each race there is a set of values that are given to each data
         String name = string[0];
         Race asian = new Race("white", Integer.valueOf(string[1]), Integer.valueOf(string[6]));
         Race black = new Race("black", Integer.valueOf(string[2]), Integer.valueOf(string[7]));
         Race latinx = new Race("latinx", Integer.valueOf(string[3]), Integer.valueOf(string[8]));
         Race other = new Race("asian", Integer.valueOf(string[4]), Integer.valueOf(string[9]));
         Race white = new Race("other", Integer.valueOf(string[5]), Integer.valueOf(string[10]));
-
+        
+        //creating a doubly linked list to add the different types of races and storing within the state 
         DoublyLinkedList<Race> raceData = new DoublyLinkedList<Race>();
         raceData.add(asian);
         raceData.add(black);
@@ -79,23 +84,25 @@ public class CovidFileReader {
      * @param states which is array of states
      */
     private void outputFile(State[] states){
+        //loops through the states and getting data for each race
         for (State state: states){
             DoublyLinkedList<Race> raceList = state.getRaceData();
             System.out.println(state.getName());
             raceList.insertionSortByAlpha();;
-
+            
+            //creating an array list where each city has specified race
             Object[] races = raceList.toArray();
             for (Object raceCity : races){
                 System.out.println(raceCity.toString());
-                
             }
+            
             System.out.println("=====");
             raceList.insertionSortByCFR();
             races = raceList.toArray();
-
+            
+            //loops through the different ethnicity and prints out a string representation
             for (Object race: races){
                 System.out.println(race.toString());
-                
             }
             System.out.println("=====");
         }
