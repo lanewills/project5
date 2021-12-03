@@ -65,14 +65,16 @@ public class DoublyLinkedList<T> {
      * @param object the object to add
      */
     public void add(int index, T object) {
+        // checks if index is in bounds
         if (index < 0 || size < index) {
             throw new IndexOutOfBoundsException();
         }
+        // checks if object is null
         if (object == null) {
             throw new IllegalArgumentException("Cannot add null "
                     + "objects to a list");
         }
-
+        
         Node<T> nodeAfter;
         if (index == size) {
             nodeAfter = tail;
@@ -96,7 +98,9 @@ public class DoublyLinkedList<T> {
      */
     public boolean remove(T object){
         Node<T> curr = head.next();
+        // Traverse through list
         while (!curr.equals(tail)) {
+            //checks if object matches curr
             if (curr.getData().equals(object)) {
                 curr.previous().setNext(curr.next());
                 curr.next().setPrevious(curr.previous());
@@ -114,9 +118,12 @@ public class DoublyLinkedList<T> {
      * @return true if the removal works
      */
     public boolean remove(int index){
+        // Declare nodeToBeRemoved variable and assigns index value
         Node<T> nodeToBeRemoved = getNodeAtIndex(index);
+        // gets next and previous nodes of nodeToBeRemoved
         nodeToBeRemoved.previous().setNext(nodeToBeRemoved.next());
         nodeToBeRemoved.next().setPrevious(nodeToBeRemoved.previous());
+        // decrease the size of list
         size--;
         return true;
     }
@@ -132,9 +139,11 @@ public class DoublyLinkedList<T> {
         }
         int i =0;
         Node<T> currentElement = head;
+        // Traverse the list
         while (currentElement.next != null) {
             currentElement = currentElement.next;
             i++;
+            // checks to see if element matches T object.
             if (currentElement.getData().equals(object)) {
                 return i;
             }
