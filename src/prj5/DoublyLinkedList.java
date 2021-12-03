@@ -76,18 +76,21 @@ public class DoublyLinkedList<T> {
         }
         
         Node<T> nodeAfter;
+        // assigns nodeAfter a value.
         if (index == size) {
             nodeAfter = tail;
         } 
         else {
             nodeAfter = getNodeAtIndex(index);
         }
-
+        
+        //adds addition to list
         Node<T> addition = new Node<T>(object);
         addition.setPrevious(nodeAfter.previous());
         addition.setNext(nodeAfter);
         nodeAfter.previous().setNext(addition);
         nodeAfter.setPrevious(addition);
+        // increase size
         size++;
     }
 
@@ -107,6 +110,7 @@ public class DoublyLinkedList<T> {
                 size--;
                 return true;
             }
+            // assigns curr value.
             curr = curr.next();
         }
         return false;
@@ -168,10 +172,12 @@ public class DoublyLinkedList<T> {
      * @return the current node within the index
      */
     private Node<T> getNodeAtIndex(int index) {
+        // checks if index is in bounds
         if (index < 0 || size <= index) {
             throw new IndexOutOfBoundsException("No element exists at "
                 + index);
         }
+        // sets value for curr.
         Node<T> curr = head.next();
         for (int i = 0; i < index; i++) {
             curr = curr.next();
@@ -188,7 +194,9 @@ public class DoublyLinkedList<T> {
      */
     public int lastIndexOf(T obj) {
         Node<T> current = tail.previous();
+        // Traverse through list starting from end
         for (int i = this.getSize() - 1; i >= 0; i--) {
+            //checks if current matches object.
             if (current.getData().equals(obj)) {
                 return i;
             }
@@ -201,6 +209,7 @@ public class DoublyLinkedList<T> {
      * This method clears the list of all objects
      */
     public void clear() {
+        // sets head an tail equal to null
         head = new DoublyLinkedList.Node<T>(null);
         tail = new DoublyLinkedList.Node<T>(null);
         head.setNext(tail);
@@ -213,10 +222,12 @@ public class DoublyLinkedList<T> {
      * @return the array representation
      */
     public Object[] toArray() {
+        // creates new array
         Object[] array = new Object[this.getSize()];
         Node<T> curr = head.next;
         int count = 0;
         while (curr != tail){
+            //adds data from Doubly linked list to array
             array[count] = curr.getData();
             curr = curr.next;
             count++;
@@ -231,7 +242,7 @@ public class DoublyLinkedList<T> {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("(");
-
+        // traverses through list and appends data to builder 
         Node<T> curr = head.next;
         while (curr != tail) {
             builder.append(curr.data);
@@ -253,6 +264,7 @@ public class DoublyLinkedList<T> {
         }
         Node<T> curr = head.next.next;
         head.next.setNext(null);
+        //traverses
         while (curr != tail) {
             Node<T> temp = curr.next;
             insertionToSortedAlpha(curr);
@@ -275,11 +287,13 @@ public class DoublyLinkedList<T> {
     public void insertionToSortedAlpha(Node<T> node) {
         Node<T> curr = head.next;
         Node<T> prev = null;
+        //locate where node is to be inserted
         while (curr != null && Race.compareAlpha(
                 (Race)node.data, (Race)curr.data) > 0) {
             prev = curr;
             curr = curr.next;
         }
+        //sets nodes
         if (prev != null) {
             prev.setNext(node);
             node.setNext(curr);
@@ -299,16 +313,21 @@ public class DoublyLinkedList<T> {
         }
         Node<T> curr = head.next.next;
         head.next.setNext(null);
+        // traverses
         while (curr != tail) {
+            //sorts current node
             Node<T> temp = curr.next;
             insertionToSortedCFR(curr);
             curr = temp;
         }
+        //sets node to previous
         curr = curr.previous;
+        //checks if it is last node
         while (curr.next != null)
         {
             curr = curr.next;
         }
+        //sets position
         curr.setNext(tail);
         tail.setPrevious(curr);
     }
@@ -320,11 +339,13 @@ public class DoublyLinkedList<T> {
     public void insertionToSortedCFR(Node<T> node) {
         Node<T> curr = head.next;
         Node<T> prev = null;
+      //locate where node is to be inserted
         while (curr != null && Race.compareCFR(
                 (Race)node.data, (Race)curr.data) > 0) {
             prev = curr;
             curr = curr.next;
         }
+      //sets nodes
         if (prev != null) {
             prev.setNext(node);
             node.setNext(curr);
@@ -376,6 +397,7 @@ public class DoublyLinkedList<T> {
          */
         @Override
         public T next() {
+            //checks if the next node exists
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
@@ -394,10 +416,12 @@ public class DoublyLinkedList<T> {
          */
         @Override
         public void remove() {
+            //checks if calledNext has been called
             if (!calledNext) {
                 throw new IllegalStateException("next has not been called yet");
             }
             else {
+                // removes object.
                 next.previous.setNext(next.next);
                 next.next.setPrevious(next.previous);
                 size--;
