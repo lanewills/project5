@@ -6,7 +6,7 @@ import cs2.Shape;
 import cs2.Button;
 import java.awt.Color;
 /**
- * This class is a Graphic User Interface that displays the information based on the program
+ * This class is a Graphic User Interface that displays the information based on the input file.
  * @version 2021.11.16
  * @author lane wills (lane20)
  * @author Jeffrey Zheng (jeffreyz)
@@ -235,6 +235,7 @@ public class CovidWindow {
             }
         }
     }
+    
     /**
      * Graphs the different groups to the window
      */
