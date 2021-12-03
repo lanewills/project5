@@ -53,6 +53,8 @@ public class CovidWindow {
     public CovidWindow(State[] state){
         window = new Window();
         window.setTitle("Graph: Lane Jeffrey Ananya ");
+        
+        //create all necessary buttons.
         sortByAlpha = new Button("Sort by Alpha");
         sortByCFR = new Button("Sort by CFR");
         quit = new Button("Quit");
@@ -62,6 +64,8 @@ public class CovidWindow {
         representGA = new Button("Represent GA");
         representNC = new Button("Represent NC");
         representTN = new Button("Represent TN");
+        
+        //add buttons to respective places on the window
         window.addButton(representDC, WindowSide.SOUTH);
         window.addButton(representTN, WindowSide.SOUTH);
         window.addButton(representVA, WindowSide.SOUTH);
@@ -71,6 +75,8 @@ public class CovidWindow {
         window.addButton(sortByAlpha, WindowSide.NORTH);
         window.addButton(quit, WindowSide.NORTH);
         window.addButton(sortByCFR, WindowSide.NORTH);
+        
+        //assign each button's on-click method.
         representDC.onClick(this, "clickedDC");
         representTN.onClick(this, "clickedTN");
         representVA.onClick(this, "clickedVA");
@@ -193,10 +199,13 @@ public class CovidWindow {
      * @param race state array used
      */
     private void extractData(Object[] race) {
+        
+        //for loop to loop through all races.
         for (int i = 0; i < race.length; i++) {
             Race group = (Race) race[i];
             String name = group.getEthnicity();
-
+            
+            //switch statement for data extraction by race.
             switch (name) {
                 case "asian":
                     Race asian = group;
@@ -231,8 +240,11 @@ public class CovidWindow {
      */
     private void graph(Object[] groups)
     {
+        //clear all previous shapes.
         window.removeAllShapes();
         int yVal = (window.getGraphPanelHeight() * 3 / 4);
+        
+        //for loop to make bars for each race.
         for (int i = 0; i < groups.length; i++)
         {
             Race group = (Race) groups[i];
@@ -240,6 +252,8 @@ public class CovidWindow {
             int xVal = XSTARTING + XGAP * i;
             TextShape text = new TextShape(xVal, yVal + 13, name);
             window.addShape(text);
+            
+            //switch statement for each race. calculate bar height based on CFR.
             switch(name){
                 case "asian":
                     if(asianCFRPercent == -1)
@@ -321,10 +335,16 @@ public class CovidWindow {
      * @param button that represents what is getting clicked
      */
     public void clickedAlpha(Button button) {
+        
+        //if no data is displayed, do nothing.
         if (title == null) {
             return;
         }
+        
+        //get name of the state from the current title.
         String name = title.getText().substring(0, 2);
+        
+        //switch statement to determine which state to sort.
         switch(name){
             case "DC":
                 state[0].getRaceData().insertionSortByAlpha();
@@ -359,10 +379,16 @@ public class CovidWindow {
      * @param button that is being clicked on
      */
     public void clickedCFR(Button button) {
+        
+        //if no data is displayed, do nothing
         if (title == null) {
             return;
         }
+        
+        //get name of state from current title.
         String name = title.getText().substring(0, 2);
+        
+      //switch statement to determine which state to sort.
         switch(name) {
             case "DC":
                 state[0].getRaceData().insertionSortByCFR();
